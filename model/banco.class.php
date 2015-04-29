@@ -9,7 +9,7 @@ class Banco {
 	var $conn;
 	
 	public function __construct($sgbd='mysql', $host='localhost', $user='daw', $passwd='daw2014',
-$dbname='daw_yearbook') {
+$dbname='u946044087daw') {
 		$this->sgbd = $sgbd;
 		$this->host = $host;
 		$this->user = $user;
