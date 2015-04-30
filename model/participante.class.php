@@ -23,10 +23,10 @@
 		}
 		
 	function exibeParticipante() {
-		$cidade = utf8_encode($this->objCidade->nomeCidade);
+		$cidade = $this->objCidade->nomeCidade;
 		$estado = $this->objEstado->sigaEstado;
-		$nome = utf8_encode($this->nomeCompleto);
-		$descricao = utf8_encode($this->descricao);
+		$nome = $this->nomeCompleto;
+		$descricao =$this->descricao;
 		
 			return "  <dt>Nome:</dt><dd>$nome</dd>
                         <dt>Cidade:</dt><dd>$cidade-$estado</dd>

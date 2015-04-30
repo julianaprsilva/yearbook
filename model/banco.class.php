@@ -8,7 +8,7 @@ class Banco {
 	var $dbname;
 	var $conn;
 	
-	public function __construct($sgbd='mysql', $host='localhost', $user='daw', $passwd='daw2014',
+	public function __construct($sgbd='mysql', $host='br-cdbr-azure-south-a.cloudapp.net', $user='b596cd610f2e85', $passwd='49f9e82c',
 $dbname='u946044087daw') {
 		$this->sgbd = $sgbd;
 		$this->host = $host;

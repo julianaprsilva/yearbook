@@ -66,8 +66,8 @@ id="email" required/>
 						<input onchange="verificaSenha()"size="35" maxlength="10" autofocus type="password"
 name="senhaconf" id="senhaconf" required/>    
 					</div>
-					<div classs="button">
-						<button type="submit">cadastrar</button>
+					<div>
+						<button class="button" type="submit">cadastrar</button>
 					</div>
 				</fieldset>
 			</form>

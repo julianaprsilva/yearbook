@@ -28,9 +28,14 @@
 				<fieldset>
 					<div>
 						<label for="nome">Nome</label>
-						<input size="35" maxlength="50" autofocus autocomplete="on" type="text" name="nome" id="nome" required />
-					<div classs="button">
-						<button type="submit">Buscar</button>
+						<?php if(isset($nome)){ ?>
+							<input size="35" maxlength="50" autofocus autocomplete="on" type="text" name="nome" id="nome " 
+							        required value="<?php echo $nome?>" />
+						<?php }else {?>
+							<input size="35" maxlength="50" autofocus autocomplete="on" type="text" name="nome" id="nome" required />
+						<?php }?>
+					<div>
+						<button class="button"type="submit">Buscar</button>
 					</div>
 				</fieldset>
 			</form>

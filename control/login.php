@@ -13,9 +13,11 @@
 		$_SESSION['login'] = $login;
 		$_SESSION['senha'] = $senha;
 		$_SESSION['logged'] = true;
+		$banco->conn = null;
 		header('location:../perfil.php');
 	}else {
 		$_SESSION["logged"] = false;
+		$banco->conn = null;
 		header('location:../index.php');
 	}
 	

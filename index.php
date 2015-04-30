@@ -19,7 +19,7 @@
     <body>
         <main>
         	 <ul>
-                <?php listaPessoas(10)?>
+                <?php listaPessoas(10);?>
             </ul>
         	<div class='introducao'>
         		 <p>Entre no Yearbook</p>
@@ -32,7 +32,9 @@
 					<legend>Acesso</legend>
 					<?php if(isset($_SESSION['logged'])) {
 							if($_SESSION['logged'] == false) 
-								echo "<p>Login ou senha inválidos</p>";
+								echo "<p class='erro'>Login ou senha inválidos</p>";
+						}else if(isset($_GET['login'])) {
+								echo "<p class='erro'>Entre primeiro</p>";
 						}
 					?>
 					<div>
@@ -43,8 +45,8 @@
 						<label for="senha">Senha</label>
 						<input size="35" maxlength="50" autofocus autocomplete="on" type="password" name="senha" id="senha" required/>
 					</div>
-					<div class="button">
-						<button type="submit">entrar</button>
+					<div>
+						<button class="button" type="submit">entrar</button>
 					</div>
 				</fieldset>
 			</form>

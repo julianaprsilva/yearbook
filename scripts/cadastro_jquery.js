@@ -1,7 +1,9 @@
 $(function(){
 	$('#estados').change(function(){
+		console.log("Teste");
 		if( $(this).val() ) {
-			var estado = $('#estados').val();
+			console.log($(this).val());
+			var estado = $('select').val();
 			$('#cidades').hide();
 			$('.carregando').show();
 			$.getJSON('cidade.php?idestado='+estado, function(j){
@@ -19,20 +21,19 @@ $(function(){
 });
 
 
-$(function(){// declaro o início do jquery
+$(function() {
     $("#login").change(function() {
-    	//botão para disparar a ação
-    	var login = $("input[name='login']").val();
+    	var login = $("#login").val();
     
     	$.post('login.php',{login: login},function(data){
     		if(data == 1) {
     			$('#login').val("");
     			$('#resultado').css("color", "red");
-    			$('#resultado').html("Usuário já existe");
+    			$('#resultado').html("Login já existe");
     		}
     		else { 
     			$('#resultado').css("color", "green");
-    			$('#resultado').html("Usuário não existe");
+    			$('#resultado').html("Login válido");
     		}
     			
     	});

@@ -53,6 +53,38 @@ main h1 {
     text-shadow: 0.1em 0.0em #888;
 }
 
+.busca {
+	position: relative;
+	float: right;
+	width: 80%;
+}
+
+.busca fieldset {
+	border: none;
+    padding: 0; 
+    margin-left: 45%;
+    margin-top: 0.5em;
+}
+
+.busca label {
+	float: left;
+	margin-right: 0.5em;
+    display: inline-block;
+}
+
+.busca input {
+	float:left;
+	display: inline-block;
+}
+
+.busca button {
+	float: right;
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+}
+
+
 fieldset {
     border-style: double solid #CCC;
     border-radius: 2em;
@@ -82,7 +114,7 @@ input {
     width: 70%;
 }
 
-button {
+.button {
     text-align: center;
     background-image: linear-gradient(to top, #455E92, #E5E5E5);
     background-color: blue;
@@ -226,7 +258,8 @@ nav > ul > li:hover {
 .figaluno img {
     border-radius: 0.4em;
     box-shadow: 0.3em 0.2em 0.3em #888;
-    width: 100%;
+    width: 90px;
+    height: 90px;
 }
 
 .figaluno img:hover {
@@ -270,4 +303,9 @@ footer  p {
     font-family: "Monospace", "Lucida Console", "monospace";
     font-size: 80%;
     color: #000;
+}
+
+.erro {
+	color: red;
+	text-align: center;
 }

@@ -11,7 +11,7 @@ function verificaSenha() {
 }
 
 function verificaExtensao() { 
-	var extensoes_permitidas = new Array(".jpg", ".jpeg", ".png"); 
+	var extensoes_permitidas = new Array(".jpg", ".jpeg", ".png", '.gif'); 
 	var arquivo = document.getElementById("foto").value;
 
 	if(arquivo == '') {
@@ -31,7 +31,7 @@ function verificaExtensao() {
 	} 
 
 	if(!permitida) {
-		alert("Extensão não permitida. Escolha uma foto no formato jpeg, jpg ou png");
+		alert("Extensão não permitida. Escolha uma foto no formato jpeg, jpg gif, ou png");
 		document.getElementById("foto").value = '';
 		return;
 	}

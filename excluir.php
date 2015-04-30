@@ -21,6 +21,7 @@ session_start();
     </head>
     <body>
         <main>
+        	<?php include_once 'view/menu.html';?>
         	<div class='introducao'>
         		 <p>Você tem certeza, que quer sair desta turma. Você perderá seu acesso.</p>
             	<p>Insira seus dados. Para confirmar a sua exclusão da turma</p>
@@ -36,8 +37,8 @@ session_start();
 						<label for="senha">Senha</label>
 						<input size="35" maxlength="50" autofocus autocomplete="on" type="password" name="senha" id="senha" required/>
 					</div>
-					<div class="button">
-						<button type="submit">excluir</button>
+					<div>
+						<button class="button" type="submit">excluir</button>
 					</div>
 				</fieldset>
 			</form>

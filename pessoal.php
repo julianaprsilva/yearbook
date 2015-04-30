@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if(!isset($_SESSION['logged']))
+	if(!isset($_SESSION['logged']) && empty($_SESSION['logged']) && $_SESSION['logged'] == false)
 		header('location:index.php');
 	$loginDono = $_SESSION['login'];
 	if(!isset($_GET['login']))
@@ -10,13 +10,14 @@
 	//Verifica se não é perfil do dono e cria cookie
 	if($login != $loginDono) {
 		$visitados[$login] = $login;
-		if(isset($_COOKIE['ultimos_visitados'])) {
-			$visitados = unserialize($_COOKIE['ultimos_visitados']);
-			$visitados[$login] = $login;
-			setcookie("ultimos_visitados", serialize($visitados));
+		if(isset($_COOKIE[$loginDono])) {
+			$visitados = unserialize($_COOKIE[$loginDono]);
+			if(array_key_exists($login, $visitados) === false) {
+				$visitados[$login] = $login;
+				setcookie($loginDono, serialize($visitados));
+			}
 		}
-		setcookie("ultimos_visitados", serialize($visitados));
-		print_r($_COOKIE['ultimos_visitados']);
+		setcookie($loginDono, serialize($visitados));
 	}
 	
 	require_once 'control/controle.php';
@@ -40,6 +41,7 @@
                        <?php exibePerfil($login);?>
                     </dl>
                 </div>
+                <a href="index.php" class="voltar" title="YEARBOOK">Voltar</a>
              </div>
         </main>
         <?php include_once 'view/rodape.html';?>

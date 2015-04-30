@@ -22,8 +22,10 @@
 		$_SESSION['login'] = $login;
 		$_SESSION['senha'] = $senha;
 		$_SESSION['logged'] = true;
+		$banco->conn = null;
 		header('location:../perfil.php');
 	}else {
+		$banco->conn = null;
 		echo "<p>Erro no cadastro do usuário</p>";
 		die();
 	}

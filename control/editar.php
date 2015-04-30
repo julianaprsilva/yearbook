@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['logged'])){
-		header('location:index.php');
+		header('location:../index.php');
 }
 require_once '../model/banco.class.php';
 require_once '../model/arquivo.php';
@@ -18,42 +18,47 @@ require_once '../model/cidade.class.php';
 		$stmt->execute(array($participante->cidade));
 		$cidade = $stmt->fetchObject("Cidade");
 		$participante->objCidade = $cidade;
+		
+		$mudanca = false;
 	
-	
-	if(isset($_POST['nome'])) {
-		if($_POST['nome'] != $participante->nomeCompleto)
+	if(!empty($_POST['nome']) && htmlspecialchars($_POST['nome']) != $participante->nomeCompleto) {
 			$participante->nomeCompleto = htmlspecialchars($_POST['nome']);
+			$mudanca = true;
 	}
-	if(isset($_POST['email'])) {
-		if($_POST['email'] != $participante->email)
+	if(!empty($_POST['email']) && htmlspecialchars($_POST['email']) != $participante->email) {
 			$participante->email = htmlspecialchars($_POST['email']);
+			$mudanca = true;
 	}
-	if(isset($_POST['senha'])) {
-		if(md5($_POST['senha']) != $participante->senha)
+	if(!empty($_POST['senha']) && md5($_POST['senha']) != $participante->senha) {
 			$participante->senha = htmlspecialchars($_POST['senha']);
+			$mudanca = true;
 	}
-	if(isset($_POST['cidade'])) {
-		if($_POST['cidade'] != $participante->cidade)
-			$participante->cidade = intval(htmlspecialchars($_POST['cidade']));
+	if(!empty($_POST['senha']) && $_POST['cidades'] != $participante->cidade) {
+			$participante->cidade = intval(htmlspecialchars($_POST['cidades']));
+			$mudanca = true;
 	}
-	if(isset($_POST['descricao'])) {
-		if($_POST['descricao'] != $participante->descricao)
-			$participante->descricao = intval(htmlspecialchars($_POST['descricao']));
+	if(!empty($_POST['senha']) && htmlspecialchars($_POST['descricao']) != $participante->descricao) {
+			$participante->descricao = htmlspecialchars($_POST['descricao']);
+			$mudanca = true;
 	}
-	if(empty($_FILES['foto'])) {
+
+	if(isset($_FILES['foto']) && !empty($_FILES['foto']['name'])) {
 		$foto = salvaArquivo($_FILES['foto'], $login);
 	}
 
-	$banco = new Banco();
-	$sql = "UPDATE participantes SET nomeCompleto=?, email=?, senha=?, cidade=?, descricao=?, arquivoFoto=?";
-	$stmt = $banco->conn->prepare($sql);
-	$stmt->execute(array($participante->nomeCompleto, $participante->email, $participante->senha, $participante->cidade, 
-	$participante->descricao, $participante->arquivoFoto));
-	
-	if($stmt->rowCount() >= 1){
+	if($mudanca) {
+		$sql = "UPDATE participantes SET nomeCompleto=?, email=?, senha=?, cidade=?, descricao=? WHERE login=?";
+		$stmt = $banco->conn->prepare($sql);
+		$stmt->execute(array($participante->nomeCompleto, $participante->email, $participante->senha, $participante->cidade, 
+		$participante->descricao, $login));
+
+		if($stmt->rowCount() >= 1){
+			header('location:../perfil.php');
+			$banco->conn = false;
+		}else {
+			echo "<p>Erro ao editar usuário</p>";
+			die();
+		}
+	}else 
 		header('location:../perfil.php');
-	}else {
-		echo "<p>Erro ao editar usuário</p>";
-		die();
-	}
 ?>
